@@ -6,6 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+import edu.mum.cs.cs425.corebankapi.model.customer.Customer;
 
 @Entity
 public class User {
@@ -18,6 +21,9 @@ public class User {
 	@ManyToOne
 	@JoinColumn(name="userType_id")
 	private UserType userType;
+	@OneToOne
+	@JoinColumn(name="customer_id")
+	private Customer customer;
 	
 	public User () {
 		
@@ -68,6 +74,20 @@ public class User {
 	public void setUserType(UserType userType) {
 		this.userType = userType;
 	}
+	
+	
+
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
 
 
 	@Override

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.mum.cs.cs425.corebankapi.model.setting.User;
+import edu.mum.cs.cs425.corebankapi.model.status.Response;
 import edu.mum.cs.cs425.corebankapi.repository.UserRepository;
 import edu.mum.cs.cs425.corebankapi.service.IUserService;
 
@@ -17,45 +18,70 @@ public class UserServiceImpl implements IUserService{
 
 	@Override
 	public void saveUser(User user) {
-		userRepository.save(user);	
-		System.out.println("save successful");
+		
+		userRepository.save(user);
+		
 	}
 
 	@Override
-	public List<User> getUsers() {
-		List<User> allUsers = userRepository.findAll();
-		if(allUsers == null) {
+	public Iterable<?> getUsers() {
+		
+		Iterable<?> getallUsers = userRepository.findAll();
+		
+		if (getallUsers == null) {
 			return null;
 		}
 		
-		return allUsers ;
+		return getallUsers;
+		
 	}
 
 	@Override
 	public User getUser(Long id) {
 		
-		boolean userPresent = userRepository.findById(id).isPresent();
 		
-		if (userPresent) {
-			
-			return userRepository.findById(id).get();
+		User user = userRepository.findById(id).get();
+		Boolean isPresent = userRepository.findById(id).isPresent();
+		
+		if (isPresent) {
+			return user;
 			
 		}else
 		
-		return null;
-	}
-
-	@Override
-	public void LockUser(Long id) {
-		
+			return null;
 		
 		
 	}
 
 	@Override
-	public void editUser(Long id) {
-		// TODO Auto-generated method stub
+	public User LockUser(Long id) {
+		
+		User user = userRepository.findById(id).get();
+		Boolean isPresent = userRepository.findById(id).isPresent();
+		
+		if (isPresent) {
+			return user;
+			
+		}else
+		
+			return null;
 		
 	}
+
+	@Override
+	public User editUser(Long id) {
+		
+		User user = userRepository.findById(id).get();
+		Boolean isPresent = userRepository.findById(id).isPresent();
+		
+		if (isPresent) {
+			return user;
+			
+		}else
+		
+			return null;
+		
+	}
+
 
 }
