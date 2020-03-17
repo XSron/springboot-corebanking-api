@@ -15,6 +15,7 @@ public class CustomerService implements ICustomerService {
 	public void saveCustomer(Customer customer) {
 		if(customer != null) {
 			String customerNumber = customerRepository.generateCustomerNumber();
+			customer.setCustomerNumber(customerNumber);
 			customerRepository.save(customer);	
 		}
 	}

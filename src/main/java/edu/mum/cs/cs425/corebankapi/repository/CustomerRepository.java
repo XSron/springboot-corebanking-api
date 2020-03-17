@@ -11,6 +11,6 @@ import edu.mum.cs.cs425.corebankapi.model.customer.Customer;
 public interface CustomerRepository extends JpaRepository<Customer, Long>{
 	@Query(value = "SELECT * FROM Customer WHERE CustomerNumber = :customerNumber", nativeQuery = true)
 	public Customer getCustomerByNumber(@Param("customerNumber") String customerNumber);
-	@Query(value = "SELECT * FROM customer")
+	@Query(value = "SELECT CONCAT('CUS-', IFNULL(MAX(RIGHT(customer_number, LENGTH(customer_number) - 4)), 0) + 1) FROM customers", nativeQuery = true)
 	public String generateCustomerNumber();
 }
