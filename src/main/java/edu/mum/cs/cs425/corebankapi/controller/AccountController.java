@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,6 +16,7 @@ import edu.mum.cs.cs425.corebankapi.model.status.Response;
 import edu.mum.cs.cs425.corebankapi.service.IAccountService;
 
 @RestController
+@RequestMapping("/api")
 public class AccountController {
 	@Autowired
 	private IAccountService accountService;
@@ -27,7 +29,7 @@ public class AccountController {
 		}
 		return new Response(200, "succeed", null);
 	}
-	@GetMapping(value = "getallcustomers")
+	@GetMapping(value = "getallaccounts")
 	public Response getAllAccounts() {
 		try {
 			return new Response(200, "succeed", accountService.getAccount());
