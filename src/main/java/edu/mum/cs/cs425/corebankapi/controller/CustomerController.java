@@ -1,5 +1,8 @@
 package edu.mum.cs.cs425.corebankapi.controller;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,8 +41,10 @@ public class CustomerController {
 	@GetMapping(value = "getcustomerbynumber")
 	public Response getCustomerByNumber(@RequestParam("customerNumber") String customerNumber) {
 		try {
-			return new Response(200, "succeed", customerService.getCustomer());
+			List<Customer> customer = customerService.getCustomerByNumber(customerNumber);
+			return new Response(200, "succeed", customer);
 		}catch(Exception ex) {
+			ex.printStackTrace();
 			return new Response(400, ex.getMessage(), null);
 		}
 	}
