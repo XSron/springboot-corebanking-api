@@ -31,12 +31,13 @@ public class User {
 	
 	
 	
-	public User(String userName, String password, Boolean Locked, UserType userType) {
+	public User(String userName, String password, Boolean Locked, UserType userType, Customer customer) {
 		super();
 		this.userName = userName;
 		this.password = password;
 		this.Locked =  Locked;
 		this.userType = userType;
+		this.customer = customer;
 	}
 
 

@@ -1,12 +1,12 @@
 package edu.mum.cs.cs425.corebankapi.service.impl;
 
-import java.util.List;
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.mum.cs.cs425.corebankapi.model.setting.User;
-import edu.mum.cs.cs425.corebankapi.model.status.Response;
 import edu.mum.cs.cs425.corebankapi.repository.UserRepository;
 import edu.mum.cs.cs425.corebankapi.service.IUserService;
 

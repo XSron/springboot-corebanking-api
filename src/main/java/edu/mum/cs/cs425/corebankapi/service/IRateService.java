@@ -10,7 +10,7 @@ public interface IRateService {
 	void saveRate(Rate rate);
 	Rate getRate(Long id);
 	Iterable<?> getRates();
-	void editRate(Long id);
+	Rate editRate(Long id);
 	void deleteRate(Long id);
 	
 	
