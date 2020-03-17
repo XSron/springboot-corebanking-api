@@ -15,6 +15,7 @@ public class AccountService implements IAccountService {
 	public void saveAccount(Account account) {
 		if(account != null) {
 			String accountNumber = accountRepository.generateAccountNumber();
+			account.setActive(true);
 			account.setAccountNumber(accountNumber);
 			accountRepository.save(account);
 		}
