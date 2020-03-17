@@ -25,6 +25,9 @@ public class Customer {
 	@Column(name = "customer_name", nullable = false)
 	private String customerName;
 	@NotBlank
+	@Column(name = "customer_number", nullable = false, unique = true)
+	private String customerNumber;
+	@NotBlank
 	@Column(name = "contact_phone", nullable = false)
 	private String contactPhone;
 	@NotBlank
@@ -46,11 +49,12 @@ public class Customer {
 	@OneToMany(mappedBy = "customer")
 	private List<Account> account;
 	public Customer() {}
-	public Customer(@NotBlank String customerName, @NotBlank String contactPhone, @NotBlank String state,
+	public Customer(@NotBlank String customerName, @NotBlank String customerNumber, @NotBlank String contactPhone, @NotBlank String state,
 			@NotBlank String city, @NotBlank String street, @NotBlank String zipcode, String apartmentNumber,
 			CustomerType customerType) {
 		super();
 		this.customerName = customerName;
+		this.customerNumber = customerNumber;
 		this.contactPhone = contactPhone;
 		this.state = state;
 		this.city = city;
@@ -70,6 +74,12 @@ public class Customer {
 	}
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
+	}
+	public String getCustomerNumber() {
+		return customerNumber;
+	}
+	public void setCustomerNumber(String customerNumber) {
+		this.customerNumber = customerNumber;
 	}
 	public String getContactPhone() {
 		return contactPhone;

@@ -1,11 +1,13 @@
 package edu.mum.cs.cs425.corebankapi.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import edu.mum.cs.cs425.corebankapi.model.loan.LoanApplication;
 import edu.mum.cs.cs425.corebankapi.repository.LoanRepository;
 import edu.mum.cs.cs425.corebankapi.service.ILoanService;
 
+@Service
 public class LoanService implements ILoanService {
 	@Autowired
 	private LoanRepository loanRepository;
