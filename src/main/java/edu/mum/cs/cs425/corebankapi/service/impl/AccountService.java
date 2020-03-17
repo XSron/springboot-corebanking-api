@@ -25,7 +25,6 @@ public class AccountService implements IAccountService {
 	}
 	@Override
 	public Account getAccountByNumber(String accountNumber) {
-		// TODO Auto-generated method stub
-		return null;
+		return accountRepository.getAccountByNumber(accountNumber);
 	}
 }
