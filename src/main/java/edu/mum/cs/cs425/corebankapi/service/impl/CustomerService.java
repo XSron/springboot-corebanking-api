@@ -1,6 +1,5 @@
 package edu.mum.cs.cs425.corebankapi.service.impl;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +25,7 @@ public class CustomerService implements ICustomerService {
 		return customerRepository.findAll();
 	}
 	@Override
-	public List<Customer> getCustomerByNumber(String customerNumber) {
+	public Customer getCustomerByNumber(String customerNumber) {
 		return customerRepository.getCustomerByNumber(customerNumber);
 	}
 }

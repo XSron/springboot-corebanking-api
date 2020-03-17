@@ -13,11 +13,19 @@ public class AccountService implements IAccountService {
 	private AccountRepository accountRepository;
 	@Override
 	public void saveAccount(Account account) {
-		if(account != null)
+		if(account != null) {
+			String accountNumber = accountRepository.generateAccountNumber();
+			account.setAccountNumber(accountNumber);
 			accountRepository.save(account);
+		}
 	}
 	@Override
 	public Iterable<Account> getAccount() {
 		return accountRepository.findAll();
+	}
+	@Override
+	public Account getAccountByNumber(String accountNumber) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -7,41 +7,39 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.mum.cs.cs425.corebankapi.model.customer.Customer;
+import edu.mum.cs.cs425.corebankapi.model.account.Account;
 import edu.mum.cs.cs425.corebankapi.model.status.Response;
-import edu.mum.cs.cs425.corebankapi.service.ICustomerService;
+import edu.mum.cs.cs425.corebankapi.service.IAccountService;
 
 @RestController
-@RequestMapping("/api")
-public class CustomerController {
+public class AccountController {
 	@Autowired
-	private ICustomerService customerService;
-	@PostMapping(value = "createcustomer", produces = MediaType.APPLICATION_PROBLEM_JSON_VALUE)
-	public Response createCustomer(@RequestBody Customer customer) {
+	private IAccountService accountService;
+	@PostMapping(value = "createaccount", produces = MediaType.APPLICATION_PROBLEM_JSON_VALUE)
+	public Response createAccount(@RequestBody Account account) {
 		try {
-			customerService.saveCustomer(customer);
+			accountService.saveAccount(account);
 		}catch(Exception ex) {
 			return new Response(400, ex.getMessage(), null);
 		}
 		return new Response(200, "succeed", null);
 	}
 	@GetMapping(value = "getallcustomers")
-	public Response getAllCustomers() {
+	public Response getAllAccounts() {
 		try {
-			return new Response(200, "succeed", customerService.getCustomer());
+			return new Response(200, "succeed", accountService.getAccount());
 		}catch(Exception ex) {
 			return new Response(400, ex.getMessage(), null);
 		}
 	}
-	@GetMapping(value = "getcustomerbynumber")
-	public Response getCustomerByNumber(@RequestParam("customerNumber") String customerNumber) {
+	@GetMapping(value = "getaccountbynumber")
+	public Response getAccountByNumber(@RequestParam("accountNumber") String accountNumber) {
 		try {
-			Customer customer = customerService.getCustomerByNumber(customerNumber);
-			return new Response(200, "succeed", Arrays.asList(customer));
+			Account account = accountService.getAccountByNumber(accountNumber);
+			return new Response(200, "succeed", Arrays.asList(account));
 		}catch(Exception ex) {
 			ex.printStackTrace();
 			return new Response(400, ex.getMessage(), null);
