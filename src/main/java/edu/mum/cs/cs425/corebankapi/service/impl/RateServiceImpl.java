@@ -15,7 +15,11 @@ public class RateServiceImpl implements IRateService{
 
 	@Override
 	public void saveRate(Rate rate) {
-		rateRepository.save(rate);
+		
+		if (rate != null) {
+			rateRepository.save(rate);
+		}
+		
 	}
 
 	@Override

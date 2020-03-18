@@ -18,9 +18,12 @@ public class UserServiceImpl implements IUserService{
 
 	@Override
 	public void saveUser(User user) {
+		if (user != null) {
+			userRepository.save(user);
+			
+		}
 		
-		userRepository.save(user);
-		
+	
 	}
 
 	@Override

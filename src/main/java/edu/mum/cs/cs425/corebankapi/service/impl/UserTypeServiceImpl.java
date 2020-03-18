@@ -17,7 +17,10 @@ public class UserTypeServiceImpl implements IUserTypeService{
 	@Override
 	public void saveUserType(UserType userType) {
 		
-		userTypeRepository.save(userType);
+		if (userType != null) {
+			userTypeRepository.save(userType);
+		}
+		
 		
 	}
 

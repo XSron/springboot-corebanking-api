@@ -3,6 +3,7 @@ package edu.mum.cs.cs425.corebankapi.model.paycheck;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import edu.mum.cs.cs425.corebankapi.model.account.Account;
 
@@ -29,7 +32,8 @@ public class Paycheck {
 	@Column(name = "payment_date", nullable = false)
 	private LocalDate paymentDate;
 	@NotNull
-	@OneToMany(mappedBy = "paycheck")
+	@OneToMany(mappedBy = "paycheck", cascade = CascadeType.PERSIST)
+	@JsonManagedReference
 	private List<PaycheckDetail> paycheckdetail;
 	public Paycheck() {}
 	public Paycheck(Account account, @NotNull LocalDate paymentDate, @NotNull List<PaycheckDetail> paycheckdetail) {

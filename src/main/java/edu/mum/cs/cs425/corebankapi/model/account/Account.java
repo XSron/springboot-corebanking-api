@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import edu.mum.cs.cs425.corebankapi.model.customer.Customer;
 
 @Table(name = "accounts")
@@ -27,6 +29,7 @@ public class Account {
 	@JoinColumn(name = "account_type_id")
 	private AccountType accountType;
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	public Account() {}

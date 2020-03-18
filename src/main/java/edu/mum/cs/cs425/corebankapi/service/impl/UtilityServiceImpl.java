@@ -15,8 +15,11 @@ public class UtilityServiceImpl implements IUtilitySettingService{
 
 	@Override
 	public void saveUtilitySetting(UtilitySetting utilitySetting) {
+		if(utilitySetting != null) {
+			
+			utilitySettingRepository.save(utilitySetting);
+		}
 		
-		utilitySettingRepository.save(utilitySetting);
 		
 	}
 

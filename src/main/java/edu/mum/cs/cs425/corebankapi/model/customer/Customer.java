@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import edu.mum.cs.cs425.corebankapi.model.account.Account;
 
 @Table(name = "customers")
@@ -47,6 +49,7 @@ public class Customer {
 	@JoinColumn(name = "customer_type_id")
 	private CustomerType customerType;
 	@OneToMany(mappedBy = "customer")
+	@JsonManagedReference
 	private List<Account> account;
 	public Customer() {}
 	public Customer(@NotBlank String customerName, @NotBlank String customerNumber, @NotBlank String contactPhone, @NotBlank String state,
