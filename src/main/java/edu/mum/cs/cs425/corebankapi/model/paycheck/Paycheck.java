@@ -32,7 +32,7 @@ public class Paycheck {
 	@Column(name = "payment_date", nullable = false)
 	private LocalDate paymentDate;
 	@NotNull
-	@OneToMany(mappedBy = "paycheck", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "paycheck", cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private List<PaycheckDetail> paycheckdetail;
 	public Paycheck() {}
