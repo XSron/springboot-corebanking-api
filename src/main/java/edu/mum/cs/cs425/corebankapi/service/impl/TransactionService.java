@@ -132,7 +132,6 @@ public class TransactionService implements ITransactionService {
 	}
 	@Override
 	public Iterable<Transaction> getTransactionByAccountId(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return transactionRepository.getTransactionByAccountId(id);
 	}
 }

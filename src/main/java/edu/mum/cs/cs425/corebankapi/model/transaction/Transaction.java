@@ -42,11 +42,11 @@ public class Transaction {
 	@Column(name = "description", nullable = false)
 	private String description;
 	@Column(name = "account_id", insertable = false, updatable = false)
-	private long accountId;
+	private Long accountId;
 	@Column(name = "from_account_id", insertable = false, updatable = false)
-	private long fromAccountId;
+	private Long fromAccountId;
 	@Column(name = "to_account_id", insertable = false, updatable = false)
-	private long toAccountId;
+	private Long toAccountId;
 	public Transaction() {}
 	public Transaction(TransactionType transactionType, Account account, Account fromAccount, Account toAccount,
 			double amount, LocalDate transactionDate, String description) {
@@ -107,24 +107,15 @@ public class Transaction {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public long getAccountId() {
-		return accountId;
-	}
 	public void setAccountId(long accountId) {
 		this.accountId = accountId;
 		account = new Account();
 		account.setAccountId(accountId);
 	}
-	public long getFromAccountId() {
-		return fromAccountId;
-	}
 	public void setFromAccountId(long fromAccountId) {
 		this.fromAccountId = fromAccountId;
 		fromAccount = new Account();
 		fromAccount.setAccountId(fromAccountId);
-	}
-	public long getToAccountId() {
-		return toAccountId;
 	}
 	public void setToAccountId(long toAccountId) {
 		this.toAccountId = toAccountId;
