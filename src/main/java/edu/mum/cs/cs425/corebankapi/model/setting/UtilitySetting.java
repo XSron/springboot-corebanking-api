@@ -4,6 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+import edu.mum.cs.cs425.corebankapi.model.account.Account;
 
 @Entity
 public class UtilitySetting {
@@ -12,7 +16,9 @@ public class UtilitySetting {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private String accountNumber;
+	@OneToOne
+	@JoinColumn(name="account_id")
+	private Account account;
 	
 	public UtilitySetting(){
 		
@@ -20,10 +26,10 @@ public class UtilitySetting {
 	
 	
 	
-	public UtilitySetting(String name, String accountNumber) {
+	public UtilitySetting(String name, Account account) {
 		super();
 		this.name = name;
-		this.accountNumber = accountNumber;
+		this.account = account;
 	}
 
 
@@ -40,20 +46,29 @@ public class UtilitySetting {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getAccountNumber() {
-		return accountNumber;
+	
+
+
+
+	public Account getAccount() {
+		return account;
 	}
-	public void setAccountNumber(String accountNumber) {
-		this.accountNumber = accountNumber;
+
+
+
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 
 
 	@Override
 	public String toString() {
-		return "UtilitySetting [id=" + id + ", name=" + name + ", accountNumber=" + accountNumber + "]";
+		return "UtilitySetting [id=" + id + ", name=" + name + ", account=" + account + "]";
 	}
-	
+
+
+
 	
 	
 	
