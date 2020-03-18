@@ -79,8 +79,10 @@ public class TransactionService implements ITransactionService {
 	}
 	@Override
 	public void payLoan(String loanApplicationNumber) {
-		// TODO Auto-generated method stub
+		//get Account
+		//check if loan is active
 		
+		//update loan if finish
 	}
 	@Override
 	public Iterable<Transaction> getAllTransaction() {

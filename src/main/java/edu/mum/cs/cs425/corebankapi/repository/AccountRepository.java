@@ -1,5 +1,7 @@
 package edu.mum.cs.cs425.corebankapi.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -19,4 +21,6 @@ public interface AccountRepository extends JpaRepository<Account, Long>{
 	@Transactional
 	@Query(value = "UPDATE accounts set balance = :balance where account_id = :accountId", nativeQuery = true)
 	public void updateBalance(@Param("accountId") long id, @Param("balance") double balance);
+	@Query(value = "select acc.* from accounts acc inner join customers c ON acc.customer_id = c.customer_id where c.customer_number = :customerNumber", nativeQuery = true)
+	public List<Account> getAccountByCustomerNumber(@Param("customerNumber") String customerNumber); 
 }

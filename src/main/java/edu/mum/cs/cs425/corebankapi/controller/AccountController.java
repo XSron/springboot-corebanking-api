@@ -61,4 +61,12 @@ public class AccountController {
 			return new Response(400, ex.getMessage(), null);
 		}
 	}
+	@GetMapping(value = "getaccountbycustomernumber")
+	public Response getAccountByCustomerNumber(@RequestParam("customerNumber") String customerNumber) {
+		try {
+			return new Response(200, "succeed", accountService.getAccountByCustomerNumber(customerNumber));
+		}catch(Exception ex) {
+			return new Response(400, ex.getMessage(), null);
+		}
+	}
 }

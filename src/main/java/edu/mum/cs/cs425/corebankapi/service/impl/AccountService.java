@@ -28,4 +28,8 @@ public class AccountService implements IAccountService {
 	public Account getAccountByNumber(String accountNumber) {
 		return accountRepository.getAccountByNumber(accountNumber);
 	}
+	@Override
+	public Iterable<Account> getAccountByCustomerNumber(String customerNumber) {
+		return accountRepository.getAccountByCustomerNumber(customerNumber);
+	}
 }
