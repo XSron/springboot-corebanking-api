@@ -23,4 +23,6 @@ public interface AccountRepository extends JpaRepository<Account, Long>{
 	public void updateBalance(@Param("accountId") long id, @Param("balance") double balance);
 	@Query(value = "select acc.* from accounts acc inner join customers c ON acc.customer_id = c.customer_id where c.customer_number = :customerNumber", nativeQuery = true)
 	public List<Account> getAccountByCustomerNumber(@Param("customerNumber") String customerNumber); 
+	@Query(value = "SELECT * from accounts where account_type_id = 1 AND customer_id = :customerId", nativeQuery = true)
+	public Account getCheckingAccount(@Param("customerId") long id);
 }

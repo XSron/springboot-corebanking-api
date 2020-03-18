@@ -10,7 +10,7 @@ public interface ITransactionService {
 	public void withdraw(Transaction transaction) throws Exception;
 	public void transfer(Transaction transaction) throws Exception;
 	public void paymentUtility(Transaction transaction) throws Exception;
-	public void payLoan(String loanApplicationNumber);
+	public void payLoan(String loanApplicationNumber) throws Exception;
 	public Iterable<Transaction> getAllTransaction();
 	public Iterable<Transaction> getTransactionByAccountId(long id);
 }

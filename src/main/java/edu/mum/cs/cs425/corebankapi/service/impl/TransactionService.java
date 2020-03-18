@@ -5,7 +5,9 @@ import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.mum.cs.cs425.corebankapi.model.account.Account;
 import edu.mum.cs.cs425.corebankapi.model.loan.LoanApplication;
+import edu.mum.cs.cs425.corebankapi.model.loan.Schedule;
 import edu.mum.cs.cs425.corebankapi.model.transaction.Transaction;
 import edu.mum.cs.cs425.corebankapi.model.transaction.TransactionType;
 import edu.mum.cs.cs425.corebankapi.repository.AccountRepository;
@@ -82,13 +84,45 @@ public class TransactionService implements ITransactionService {
 		}
 	}
 	@Override
-	public void payLoan(String loanApplicationNumber) {
-		//get Account
+	public void payLoan(String loanApplicationNumber) throws Exception {
 		LoanApplication loanApplication = loanRepository.getLoanByNumber(loanApplicationNumber);
-		//if(loanApplication == )
-		//check if loan is active
+		//check 
+		if(loanApplication == null)
+			throw new Exception("Loan Application Not Found!");
+		long customerId = loanApplication.getCustomer().getCustomerId();
+		Account checkingAccount = accountRepository.getCheckingAccount(customerId);
+		if(checkingAccount == null)
+			throw new Exception("No Checking Account Found!");
 		
-		//update loan if finish
+		//check if loan is active
+		if(!loanApplication.isActive())
+			throw new Exception("This loan application #"+ loanApplicationNumber +" is not active!");
+		
+		Schedule schedule = loanRepository.getLoanSchedule(loanApplication.getId());
+		System.out.println(schedule.getPrincipal());
+		if(schedule == null)
+			throw new Exception("No Schedule Found!");
+		double paymentAmount = schedule.getPrincipal() + schedule.getInterest();
+		
+		//check if balance is sufficient
+		if(checkingAccount.getBalance() < paymentAmount)
+			throw new Exception("Balance is not sufficient ("+ checkingAccount.getBalance() +")");
+		
+		//insert transaction
+		Transaction transaction = new Transaction(new TransactionType(5), 
+				checkingAccount, null, null, paymentAmount, LocalDate.now(), "MAKE A LOAN PAYMENT");
+		transactionRepository.save(transaction);
+		
+		//update actual date
+		loanRepository.updateActualPaymentDate(schedule.getScheduleId());
+		
+		//update loan status if finish
+		schedule = loanRepository.getLoanSchedule(loanApplication.getId());
+		if(schedule == null)
+			loanRepository.updateLoanStatus(loanApplication.getId());
+			
+		//update balance
+		accountRepository.updateBalance(checkingAccount.getAccountId(), checkingAccount.getBalance() - paymentAmount);
 	}
 	@Override
 	public Iterable<Transaction> getAllTransaction() {
