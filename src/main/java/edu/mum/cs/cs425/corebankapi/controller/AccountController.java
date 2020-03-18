@@ -6,12 +6,6 @@ import edu.mum.cs.cs425.corebankapi.service.impl.AccountTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import edu.mum.cs.cs425.corebankapi.model.account.Account;
 import edu.mum.cs.cs425.corebankapi.model.status.Response;
@@ -43,7 +37,7 @@ public class AccountController {
 		}
 	}
 	@GetMapping(value = "getaccountbynumber")
-	public Response getAccountByNumber(@RequestParam("accountNumber") String accountNumber) {
+	public Response getAccountByNumber(@PathVariable("accountNumber") String accountNumber) {
 		try {
 			Account account = accountService.getAccountByNumber(accountNumber);
 			return new Response(200, "succeed", Arrays.asList(account));
@@ -62,7 +56,7 @@ public class AccountController {
 		}
 	}
 	@GetMapping(value = "getaccountbycustomernumber")
-	public Response getAccountByCustomerNumber(@RequestParam("customerNumber") String customerNumber) {
+	public Response getAccountByCustomerNumber(@PathVariable("customerNumber") String customerNumber) {
 		try {
 			return new Response(200, "succeed", accountService.getAccountByCustomerNumber(customerNumber));
 		}catch(Exception ex) {
