@@ -36,7 +36,7 @@ public class AccountController {
 			return new Response(400, ex.getMessage(), null);
 		}
 	}
-	@GetMapping(value = "getaccountbynumber")
+	@GetMapping(value = "getaccountbynumber/{accountNumber}")
 	public Response getAccountByNumber(@PathVariable("accountNumber") String accountNumber) {
 		try {
 			Account account = accountService.getAccountByNumber(accountNumber);
@@ -55,7 +55,7 @@ public class AccountController {
 			return new Response(400, ex.getMessage(), null);
 		}
 	}
-	@GetMapping(value = "getaccountbycustomernumber")
+	@GetMapping(value = "getaccountbycustomernumber/{customerNumber}")
 	public Response getAccountByCustomerNumber(@PathVariable("customerNumber") String customerNumber) {
 		try {
 			return new Response(200, "succeed", accountService.getAccountByCustomerNumber(customerNumber));

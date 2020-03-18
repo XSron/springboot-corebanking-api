@@ -5,9 +5,11 @@ import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.mum.cs.cs425.corebankapi.model.loan.LoanApplication;
 import edu.mum.cs.cs425.corebankapi.model.transaction.Transaction;
 import edu.mum.cs.cs425.corebankapi.model.transaction.TransactionType;
 import edu.mum.cs.cs425.corebankapi.repository.AccountRepository;
+import edu.mum.cs.cs425.corebankapi.repository.LoanRepository;
 import edu.mum.cs.cs425.corebankapi.repository.TransactionRepository;
 import edu.mum.cs.cs425.corebankapi.service.ITransactionService;
 
@@ -17,6 +19,8 @@ public class TransactionService implements ITransactionService {
 	private TransactionRepository transactionRepository;
 	@Autowired
 	private AccountRepository accountRepository;
+	@Autowired
+	private LoanRepository loanRepository;
 	@Override
 	public void deposit(Transaction transaction) {
 		if(transaction != null) {
@@ -80,6 +84,8 @@ public class TransactionService implements ITransactionService {
 	@Override
 	public void payLoan(String loanApplicationNumber) {
 		//get Account
+		LoanApplication loanApplication = loanRepository.getLoanByNumber(loanApplicationNumber);
+		//if(loanApplication == )
 		//check if loan is active
 		
 		//update loan if finish

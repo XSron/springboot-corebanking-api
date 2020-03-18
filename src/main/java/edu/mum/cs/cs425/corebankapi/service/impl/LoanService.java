@@ -33,4 +33,9 @@ public class LoanService implements ILoanService {
 	public Iterable<LoanApplication> getLoanApplication() {
 		return loanRepository.findAll();
 	}
+
+	@Override
+	public LoanApplication getLoanApplicationByNumber(String loanNumber) {
+		return loanRepository.getLoanByNumber(loanNumber);
+	}
 }
