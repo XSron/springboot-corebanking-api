@@ -51,6 +51,8 @@ public class LoanApplication {
 	@JsonManagedReference
 	@NotNull
 	private List<Schedule> schedules;
+	@Column(name = "customer_id", insertable = false, updatable = false)
+	private long customerId;
 	public LoanApplication() {}
 	public LoanApplication(@NotBlank String loanApplicationNumber, @NotNull double loanAmount,
 			@NotNull double interestRate, @NotNull int length, @NotNull LocalDate loanDate, @NotNull boolean active,
@@ -118,5 +120,13 @@ public class LoanApplication {
 	}
 	public void setSchedules(List<Schedule> schedules) {
 		this.schedules = schedules;
+	}
+	public long getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(long customerId) {
+		this.customerId = customerId;
+		customer = new Customer();
+		customer.setCustomerId(customerId);
 	}
 }
