@@ -6,6 +6,6 @@ import edu.mum.cs.cs425.corebankapi.model.paycheck.Paycheck;
 
 @Service
 public interface IPaycheckService {
-	public void savePaycheck(Paycheck paycheck);
+	public void savePaycheck(Paycheck paycheck) throws Exception;
 	public Iterable<Paycheck> getPaycheck();
 }
