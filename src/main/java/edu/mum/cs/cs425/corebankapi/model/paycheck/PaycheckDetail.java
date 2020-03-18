@@ -28,6 +28,7 @@ public class PaycheckDetail {
 	@JoinColumn(name = "to_account_id")
 	private Account account;
 	private boolean seen;
+	private long accountId;
 	public PaycheckDetail() {}
 	public PaycheckDetail(Paycheck paycheck, double amount, Account account, boolean seen) {
 		super();
@@ -65,5 +66,13 @@ public class PaycheckDetail {
 	}
 	public void setSeen(boolean seen) {
 		this.seen = seen;
+	}
+	public long getAccountId() {
+		return accountId;
+	}
+	public void setAccountId(long accountId) {
+		this.accountId = accountId;
+		account = new Account();
+		account.setAccountId(accountId);
 	}
 }
