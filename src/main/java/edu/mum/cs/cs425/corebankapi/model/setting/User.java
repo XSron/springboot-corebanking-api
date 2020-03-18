@@ -1,5 +1,6 @@
 package edu.mum.cs.cs425.corebankapi.model.setting;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +25,8 @@ public class User {
 	@OneToOne
 	@JoinColumn(name="customer_id")
 	private Customer customer;
+	@Column(name = "customer_id", insertable = false, updatable = false)
+	private long customerId;
 	
 	public User () {
 		
@@ -77,6 +80,19 @@ public class User {
 	}
 	
 	
+
+
+	public long getCustomerId() {
+		return customerId;
+	}
+
+
+	public void setCustomerId(long customerId) {
+		this.customerId = customerId;
+		customer = new Customer();
+		customer.setCustomerId(customerId);
+	}
+
 
 
 	public Customer getCustomer() {
