@@ -55,4 +55,14 @@ public class CustomerController {
 			return new Response(400, ex.getMessage(), null);
 		}
 	}
+	@GetMapping(value = "getcustomerbyaccountid/{accountId}")
+	public Response getCustomerByAccountId(@PathVariable("accountId") long id) {
+		try {
+			Customer customer = customerService.getCustomerByAccountId(id);
+			return new Response(200, "succeed", Arrays.asList(customer));
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return new Response(400, ex.getMessage(), null);
+		}
+	}
 }

@@ -10,4 +10,5 @@ public interface ICustomerService {
 	public void saveCustomer(Customer customer);
 	public Iterable<Customer> getCustomer();
 	public Customer getCustomerByNumber(String customerNumber);
+	public Customer getCustomerByAccountId(long id);
 }
