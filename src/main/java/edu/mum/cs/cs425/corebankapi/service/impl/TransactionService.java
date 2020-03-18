@@ -12,6 +12,7 @@ import edu.mum.cs.cs425.corebankapi.model.transaction.Transaction;
 import edu.mum.cs.cs425.corebankapi.model.transaction.TransactionType;
 import edu.mum.cs.cs425.corebankapi.repository.AccountRepository;
 import edu.mum.cs.cs425.corebankapi.repository.LoanRepository;
+import edu.mum.cs.cs425.corebankapi.repository.ScheduleRepository;
 import edu.mum.cs.cs425.corebankapi.repository.TransactionRepository;
 import edu.mum.cs.cs425.corebankapi.service.ITransactionService;
 
@@ -23,6 +24,8 @@ public class TransactionService implements ITransactionService {
 	private AccountRepository accountRepository;
 	@Autowired
 	private LoanRepository loanRepository;
+	@Autowired
+	private ScheduleRepository scheduleRepository;
 	@Override
 	public void deposit(Transaction transaction) {
 		if(transaction != null) {
@@ -98,8 +101,7 @@ public class TransactionService implements ITransactionService {
 		if(!loanApplication.isActive())
 			throw new Exception("This loan application #"+ loanApplicationNumber +" is not active!");
 		
-		Schedule schedule = loanRepository.getLoanSchedule(loanApplication.getId());
-		System.out.println(schedule.getPrincipal());
+		Schedule schedule = scheduleRepository.getLoanSchedule(loanApplication.getId());
 		if(schedule == null)
 			throw new Exception("No Schedule Found!");
 		double paymentAmount = schedule.getPrincipal() + schedule.getInterest();
@@ -114,10 +116,10 @@ public class TransactionService implements ITransactionService {
 		transactionRepository.save(transaction);
 		
 		//update actual date
-		loanRepository.updateActualPaymentDate(schedule.getScheduleId());
+		scheduleRepository.updateActualPaymentDate(schedule.getScheduleId());
 		
 		//update loan status if finish
-		schedule = loanRepository.getLoanSchedule(loanApplication.getId());
+		schedule = scheduleRepository.getLoanSchedule(loanApplication.getId());
 		if(schedule == null)
 			loanRepository.updateLoanStatus(loanApplication.getId());
 			
