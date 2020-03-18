@@ -3,6 +3,7 @@ package edu.mum.cs.cs425.corebankapi.model.loan;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import edu.mum.cs.cs425.corebankapi.model.customer.Customer;
 
@@ -44,9 +47,12 @@ public class LoanApplication {
 	@ManyToOne 
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
-	@OneToMany(mappedBy = "loanApplication")
+	@OneToMany(mappedBy = "loanApplication", cascade = CascadeType.PERSIST)
+	@JsonManagedReference
 	@NotNull
 	private List<Schedule> schedules;
+	@Column(name = "customer_id", insertable = false, updatable = false)
+	private long customerId;
 	public LoanApplication() {}
 	public LoanApplication(@NotBlank String loanApplicationNumber, @NotNull double loanAmount,
 			@NotNull double interestRate, @NotNull int length, @NotNull LocalDate loanDate, @NotNull boolean active,
@@ -114,5 +120,13 @@ public class LoanApplication {
 	}
 	public void setSchedules(List<Schedule> schedules) {
 		this.schedules = schedules;
+	}
+	public long getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(long customerId) {
+		this.customerId = customerId;
+		customer = new Customer();
+		customer.setCustomerId(customerId);
 	}
 }

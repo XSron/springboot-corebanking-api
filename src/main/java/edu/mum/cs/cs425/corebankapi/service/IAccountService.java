@@ -9,4 +9,5 @@ public interface IAccountService {
 	public void saveAccount(Account account);
 	public Iterable<Account> getAccount();
 	public Account getAccountByNumber(String accountNumber);
+	public Iterable<Account> getAccountByCustomerNumber(String customerNumber);
 }

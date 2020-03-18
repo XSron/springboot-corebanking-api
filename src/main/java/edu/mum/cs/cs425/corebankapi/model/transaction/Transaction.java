@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import edu.mum.cs.cs425.corebankapi.model.account.Account;
 
@@ -34,12 +35,18 @@ public class Transaction {
 	@JoinColumn(name = "to_account_id")
 	private Account toAccount;
 	private double amount;
-	@NotBlank
+	@NotNull
 	@Column(name = "transaction_date", nullable = false)
 	private LocalDate transactionDate;
 	@NotBlank
 	@Column(name = "description", nullable = false)
 	private String description;
+	@Column(name = "account_id", insertable = false, updatable = false)
+	private long accountId;
+	@Column(name = "from_account_id", insertable = false, updatable = false)
+	private long fromAccountId;
+	@Column(name = "to_account_id", insertable = false, updatable = false)
+	private long toAccountId;
 	public Transaction() {}
 	public Transaction(TransactionType transactionType, Account account, Account fromAccount, Account toAccount,
 			double amount, LocalDate transactionDate, String description) {
@@ -99,5 +106,29 @@ public class Transaction {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public long getAccountId() {
+		return accountId;
+	}
+	public void setAccountId(long accountId) {
+		this.accountId = accountId;
+		account = new Account();
+		account.setAccountId(accountId);
+	}
+	public long getFromAccountId() {
+		return fromAccountId;
+	}
+	public void setFromAccountId(long fromAccountId) {
+		this.fromAccountId = fromAccountId;
+		fromAccount = new Account();
+		fromAccount.setAccountId(fromAccountId);
+	}
+	public long getToAccountId() {
+		return toAccountId;
+	}
+	public void setToAccountId(long toAccountId) {
+		this.toAccountId = toAccountId;
+		toAccount = new Account();
+		toAccount.setAccountId(toAccountId);
 	}
 }

@@ -32,9 +32,11 @@ public class Paycheck {
 	@Column(name = "payment_date", nullable = false)
 	private LocalDate paymentDate;
 	@NotNull
-	@OneToMany(mappedBy = "paycheck", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "paycheck", cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private List<PaycheckDetail> paycheckdetail;
+	@Column(name = "account_id", insertable = false, updatable = false)
+	private long accountId;
 	public Paycheck() {}
 	public Paycheck(Account account, @NotNull LocalDate paymentDate, @NotNull List<PaycheckDetail> paycheckdetail) {
 		super();
@@ -65,5 +67,13 @@ public class Paycheck {
 	}
 	public void setPaycheckdetail(List<PaycheckDetail> paycheckdetail) {
 		this.paycheckdetail = paycheckdetail;
+	}
+	public long getAccountId() {
+		return accountId;
+	}
+	public void setAccountId(long accountId) {
+		this.accountId = accountId;
+		account = new Account();
+		account.setAccountId(accountId);
 	}
 }

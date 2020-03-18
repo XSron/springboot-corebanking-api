@@ -51,6 +51,8 @@ public class Customer {
 	@OneToMany(mappedBy = "customer")
 	@JsonManagedReference
 	private List<Account> account;
+	@Column(name = "customer_type_id", insertable = false, updatable = false)
+	private int customerTypeId;
 	public Customer() {}
 	public Customer(@NotBlank String customerName, @NotBlank String customerNumber, @NotBlank String contactPhone, @NotBlank String state,
 			@NotBlank String city, @NotBlank String street, @NotBlank String zipcode, String apartmentNumber,
@@ -131,5 +133,13 @@ public class Customer {
 	}
 	public void setAccount(List<Account> account) {
 		this.account = account;
+	}
+	public int getCustomerTypeId() {
+		return customerTypeId;
+	}
+	public void setCustomerTypeId(int customerTypeId) {
+		this.customerTypeId = customerTypeId;
+		customerType = new CustomerType();
+		customerType.setCustomerTypeId(customerTypeId);
 	}
 }

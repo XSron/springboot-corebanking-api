@@ -32,6 +32,10 @@ public class Account {
 	@JsonBackReference
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
+	@Column(name = "customer_id", insertable = false, updatable = false)
+	private long customerId;
+	@Column(name = "account_type_id", insertable = false, updatable = false)
+	private int accountTypeId;
 	public Account() {}
 	public Account(@NotBlank String accountNumber, double balance, boolean active, AccountType accountType,
 			Customer customer) {
@@ -77,5 +81,21 @@ public class Account {
 	}
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+	public long getAccountTypeId() {
+		return accountTypeId;
+	}
+	public void setAccountTypeId(int accountTypeId) {
+		this.accountTypeId = accountTypeId;
+		accountType = new AccountType();
+		accountType.setAccountTypeId(accountTypeId);
+	}
+	public long getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(long customerId) {
+		this.customerId = customerId;
+		customer = new Customer();
+		customer.setCustomerId(customerId);
 	}
 }
