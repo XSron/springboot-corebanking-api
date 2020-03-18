@@ -12,6 +12,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Table(name = "schedules")
 @Entity
 public class Schedule {
@@ -29,10 +33,13 @@ public class Schedule {
 	private double outstandingBalance;
 	@NotNull
 	@Column(name = "payment_date", nullable = false)
+	@DateTimeFormat(pattern = "YYYY-MM-dd")
 	private LocalDate paymentDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate actualPaymentDate;
 	@NotNull
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name = "loan_application_id")
 	private LoanApplication loanApplication;
 	public Schedule() {}

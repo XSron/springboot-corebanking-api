@@ -3,6 +3,7 @@ package edu.mum.cs.cs425.corebankapi.model.loan;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import edu.mum.cs.cs425.corebankapi.model.customer.Customer;
 
@@ -44,7 +47,8 @@ public class LoanApplication {
 	@ManyToOne 
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
-	@OneToMany(mappedBy = "loanApplication")
+	@OneToMany(mappedBy = "loanApplication", cascade = CascadeType.PERSIST)
+	@JsonManagedReference
 	@NotNull
 	private List<Schedule> schedules;
 	public LoanApplication() {}

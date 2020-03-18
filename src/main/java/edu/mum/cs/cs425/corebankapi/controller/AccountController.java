@@ -6,6 +6,12 @@ import edu.mum.cs.cs425.corebankapi.service.impl.AccountTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import edu.mum.cs.cs425.corebankapi.model.account.Account;
 import edu.mum.cs.cs425.corebankapi.model.status.Response;
@@ -13,6 +19,7 @@ import edu.mum.cs.cs425.corebankapi.service.IAccountService;
 
 @RestController
 @CrossOrigin(allowedHeaders = "*")
+@RequestMapping("/api")
 public class AccountController {
 	@Autowired
 	private IAccountService accountService;

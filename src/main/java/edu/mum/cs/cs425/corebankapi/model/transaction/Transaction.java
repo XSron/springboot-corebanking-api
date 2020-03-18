@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import edu.mum.cs.cs425.corebankapi.model.account.Account;
 
@@ -34,7 +35,7 @@ public class Transaction {
 	@JoinColumn(name = "to_account_id")
 	private Account toAccount;
 	private double amount;
-	@NotBlank
+	@NotNull
 	@Column(name = "transaction_date", nullable = false)
 	private LocalDate transactionDate;
 	@NotBlank

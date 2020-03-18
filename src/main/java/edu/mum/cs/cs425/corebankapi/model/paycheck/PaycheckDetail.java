@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import edu.mum.cs.cs425.corebankapi.model.account.Account;
 
 @Entity
@@ -18,6 +20,7 @@ public class PaycheckDetail {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name = "paycheck_id")
 	private Paycheck paycheck;
 	private double amount;
