@@ -12,7 +12,7 @@ public interface IUserService {
 	void saveUser(User user);
 	Iterable <?> getUsers();
 	User getUser(Long id);
-	User LockUser(Long id);
+	void LockUser(Long id);
 	User editUser(Long id);
 	public User login(String username, String password);
 }
