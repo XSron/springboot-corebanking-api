@@ -64,7 +64,7 @@ public class LoanApplicationController {
 		}
 	}
 	
-	@GetMapping(value = "getloanapplicationbycustomerid/{loanId}")
+	@GetMapping(value = "getloanapplicationbycustomerid/{customerId}")
 	public Response getLoanApplicationsByCustomerId(@PathVariable("customerId") long customerId) {
 		try {
 			List<LoanApplication> loanApplication = loanService.getLoanApplicationsByCustomerId(customerId);
