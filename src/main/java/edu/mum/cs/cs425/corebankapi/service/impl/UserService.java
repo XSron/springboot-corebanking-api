@@ -85,8 +85,7 @@ public class UserService implements IUserService{
 	}
 
 	@Override
-	public int login(String username, String password) {
-		return 0;
-		//return userRepository.loginUserAccount(username, password);
+	public User login(String username, String password) {
+		return userRepository.login(username, password);
 	}
 }

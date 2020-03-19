@@ -14,5 +14,5 @@ public interface IUserService {
 	User getUser(Long id);
 	User LockUser(Long id);
 	User editUser(Long id);
-	public int login(String username, String password);
+	public User login(String username, String password);
 }
