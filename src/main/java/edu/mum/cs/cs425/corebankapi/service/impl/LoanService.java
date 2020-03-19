@@ -46,4 +46,9 @@ public class LoanService implements ILoanService {
 	public List<Schedule> getSchedulesByLoanId(long id) {
 		return scheduleRepository.getSchedulesByLoanId(id);
 	}
+
+	@Override
+	public List<LoanApplication> getLoanApplicationsByCustomerId(long id) {
+		return loanRepository.getLoanApplicationsByCustomerId(id);
+	}
 }

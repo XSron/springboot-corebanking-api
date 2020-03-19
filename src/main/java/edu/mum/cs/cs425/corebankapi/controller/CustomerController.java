@@ -21,7 +21,6 @@ public class CustomerController {
 	private CustomerTypeService customerTypeService;
 	@PostMapping(value = "createcustomer", produces = MediaType.APPLICATION_PROBLEM_JSON_VALUE)
 	public Response createCustomer(@RequestBody Customer customer) {
-		System.out.println("cusom" + customer.getCustomerType().getCustomerTypeName());
 		try {
 			customerService.saveCustomer(customer);
 		}catch(Exception ex) {

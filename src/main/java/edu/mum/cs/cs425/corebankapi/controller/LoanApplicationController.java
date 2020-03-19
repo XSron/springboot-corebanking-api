@@ -63,4 +63,15 @@ public class LoanApplicationController {
 			return new Response(400, ex.getMessage(), null);
 		}
 	}
+	
+	@GetMapping(value = "getloanapplicationbycustomerid/{loanId}")
+	public Response getLoanApplicationsByCustomerId(@PathVariable("customerId") long customerId) {
+		try {
+			List<LoanApplication> loanApplication = loanService.getLoanApplicationsByCustomerId(customerId);
+			return new Response(200, "succeed", loanApplication);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return new Response(400, ex.getMessage(), null);
+		}
+	}
 }

@@ -13,4 +13,5 @@ public interface ILoanService {
 	public Iterable<LoanApplication> getLoanApplication();
 	public LoanApplication getLoanApplicationByNumber(String loanNumber);
 	public List<Schedule> getSchedulesByLoanId(long id);
+	public List<LoanApplication> getLoanApplicationsByCustomerId(long id);
 }
