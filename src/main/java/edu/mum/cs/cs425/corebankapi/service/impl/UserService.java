@@ -55,17 +55,14 @@ public class UserService implements IUserService{
 	}
 
 	@Override
-	public User LockUser(Long id) {
+	public void LockUser(Long id) {
 		
 		User user = userRepository.findById(id).get();
-		Boolean isPresent = userRepository.findById(id).isPresent();
-		
-		if (isPresent) {
-			return user;
+	
+			user.setLocked(true);
+			userRepository.save(user);
 			
-		}else
-		
-			return null;
+	
 		
 	}
 

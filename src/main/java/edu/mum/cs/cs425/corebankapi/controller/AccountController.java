@@ -39,6 +39,7 @@ public class AccountController {
 	@GetMapping(value = "getaccountbynumber/{accountNumber}")
 	public Response getAccountByNumber(@PathVariable("accountNumber") String accountNumber) {
 		try {
+			System.out.println("hi");
 			Account account = accountService.getAccountByNumber(accountNumber);
 			return new Response(200, "succeed", Arrays.asList(account));
 		}catch(Exception ex) {
