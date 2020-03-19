@@ -49,7 +49,7 @@ public class UtilitySettingController {
 		}
 	}
 	@GetMapping(value="getallutilitysettings")
-	public Response getAllUtilitySettings(@RequestParam Long id) {
+	public Response getAllUtilitySettings() {
 		
 		try {
 			return new Response(200, "succesful", utilitySettingService.getAllUtilitySettings());
