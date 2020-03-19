@@ -83,6 +83,12 @@ public class UserService implements IUserService{
 
 	@Override
 	public User login(String username, String password) {
-		return userRepository.login(username, password);
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+//	@Override
+//	public User login(String username, String password) {
+//		return userRepository.login(username, password);
+//	}
 }
