@@ -25,10 +25,16 @@ public class User {
 	@OneToOne
 	@JoinColumn(name="customer_id", unique = true)
 	private Customer customer;	
+	@Column(name="cutomerId", insertable = false, updatable = false)
+	private Long customerId;
+
 
 	public User () {
 		
 	}
+
+	
+	
 	
 
 	
@@ -39,6 +45,19 @@ public class User {
 		this.Locked =  Locked;
 		this.userType = userType;
 		this.customer = customer;
+	}
+	
+	
+
+	public Long getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
+		customer = new Customer();
+		customer.setCustomerId(customerId);
+		
 	}
 
 	public Long getUserId() {
