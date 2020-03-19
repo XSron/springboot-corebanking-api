@@ -63,11 +63,11 @@ public class UserController {
 	}
 	
 	
-	@GetMapping(value= "lockuser")
+	@PostMapping(value= "lockuser")
 	public Response lockUser(@RequestParam Long id) {
 		try {
 		
-			return new Response(200, "succesful", Arrays.asList(userService.LockUser(id)));
+			return new Response(200, "succesful", null);
 			
 		}catch(Exception ex) {
 			return new Response(400, ex.getMessage(), null);
