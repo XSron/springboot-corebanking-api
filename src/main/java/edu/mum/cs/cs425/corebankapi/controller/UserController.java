@@ -21,8 +21,6 @@ public class UserController {
 	
 	@Autowired
 	private IUserService userService;
-	
-	
 	@PostMapping(value = "createuser", produces = MediaType.APPLICATION_PROBLEM_JSON_VALUE)
 	public Response createUser(@RequestBody User user) {
 		try {
@@ -79,16 +77,22 @@ public class UserController {
 	@GetMapping(value= "edituser")
 	public Response editUser(@RequestParam Long id) {
 		try {
-		
 			return new Response(200, "succesful", Arrays.asList(userService.editUser(id)));
-			
 		}catch(Exception ex) {
-			return new Response(400, ex.getMessage(), null);
-			
+			return new Response(400, ex.getMessage(), null);	
 		}
-		
 	}
 		
-	
+	@PostMapping(value = "login", produces = MediaType.APPLICATION_PROBLEM_JSON_VALUE)
+	public Response login(@RequestBody User user) {
+		try {
+			int count = userService.login(user.getUserName(), user.getPassword());
+			if(count == 0)
+				return new Response(400, "Invalid User", null);
+		}catch (Exception ex) {
+			return new Response(400, ex.getMessage(), null);
+		}
+		return new Response(200, "login successful", null);
+	}
 
 }

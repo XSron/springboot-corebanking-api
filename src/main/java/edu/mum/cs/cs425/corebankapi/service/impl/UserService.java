@@ -11,7 +11,7 @@ import edu.mum.cs.cs425.corebankapi.repository.UserRepository;
 import edu.mum.cs.cs425.corebankapi.service.IUserService;
 
 @Service
-public class UserServiceImpl implements IUserService{
+public class UserService implements IUserService{
 	
 	@Autowired
 	private  UserRepository userRepository;
@@ -22,8 +22,6 @@ public class UserServiceImpl implements IUserService{
 			userRepository.save(user);
 			
 		}
-		
-	
 	}
 
 	@Override
@@ -86,5 +84,9 @@ public class UserServiceImpl implements IUserService{
 		
 	}
 
-
+	@Override
+	public int login(String username, String password) {
+		return 0;
+		//return userRepository.loginUserAccount(username, password);
+	}
 }

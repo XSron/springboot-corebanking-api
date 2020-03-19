@@ -13,4 +13,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Long>{
 	public Customer getCustomerByNumber(@Param("customernumber") String customerNumber);
 	@Query(value = "SELECT CONCAT('CUS-', IFNULL(MAX(RIGHT(customer_number, LENGTH(customer_number) - 4)), 0) + 1) FROM customers", nativeQuery = true)
 	public String generateCustomerNumber();
+	@Query(value = "select c.* from customers c inner join accounts acc on c.customer_id = acc.customer_id where acc.account_id = :accountId", nativeQuery = true)
+	public Customer getCustomerByAccountId(@Param("accountId") long id);
 }

@@ -1,5 +1,7 @@
 package edu.mum.cs.cs425.corebankapi.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -19,4 +21,6 @@ public interface LoanRepository extends JpaRepository<LoanApplication, Long> {
 	@Transactional
 	@Query(value = "UPDATE loanapplications set active = 0 WHERE id = :loan_application_id", nativeQuery = true)
 	public void updateLoanStatus(@Param("loan_application_id") long id);
+	@Query(value = "select * from loanapplications where customer_id = :customerId", nativeQuery = true)
+	public List<LoanApplication> getLoanApplicationsByCustomerId(@Param("customerId") long id);
 }

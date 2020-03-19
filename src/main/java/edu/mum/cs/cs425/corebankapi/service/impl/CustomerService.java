@@ -28,4 +28,8 @@ public class CustomerService implements ICustomerService {
 	public Customer getCustomerByNumber(String customerNumber) {
 		return customerRepository.getCustomerByNumber(customerNumber);
 	}
+	@Override
+	public Customer getCustomerByAccountId(long id) {
+		return customerRepository.getCustomerByAccountId(id);
+	}
 }

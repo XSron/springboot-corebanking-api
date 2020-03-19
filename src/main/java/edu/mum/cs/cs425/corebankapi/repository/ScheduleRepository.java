@@ -1,5 +1,7 @@
 package edu.mum.cs.cs425.corebankapi.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -17,4 +19,6 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long>{
 	@Transactional
 	@Query(value = "UPDATE schedules set actual_payment_date = NOW() WHERE schedule_id = :scheduleId", nativeQuery = true)
 	public void updateActualPaymentDate(@Param("scheduleId") long id);
+	@Query(value = "SELECT * from schedules where loan_application_id = :loanId", nativeQuery = true)
+	public List<Schedule> getSchedulesByLoanId(@Param("loanId") long id);
 }

@@ -21,7 +21,6 @@ public class CustomerController {
 	private CustomerTypeService customerTypeService;
 	@PostMapping(value = "createcustomer", produces = MediaType.APPLICATION_PROBLEM_JSON_VALUE)
 	public Response createCustomer(@RequestBody Customer customer) {
-		System.out.println("cusom" + customer.getCustomerType().getCustomerTypeName());
 		try {
 			customerService.saveCustomer(customer);
 		}catch(Exception ex) {
@@ -52,6 +51,16 @@ public class CustomerController {
 		try {
 			return new Response(200, "succeed", customerTypeService.getCustomerType());
 		}catch(Exception ex) {
+			return new Response(400, ex.getMessage(), null);
+		}
+	}
+	@GetMapping(value = "getcustomerbyaccountid/{accountId}")
+	public Response getCustomerByAccountId(@PathVariable("accountId") long id) {
+		try {
+			Customer customer = customerService.getCustomerByAccountId(id);
+			return new Response(200, "succeed", Arrays.asList(customer));
+		}catch(Exception ex) {
+			ex.printStackTrace();
 			return new Response(400, ex.getMessage(), null);
 		}
 	}

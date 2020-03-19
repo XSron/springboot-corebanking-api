@@ -75,4 +75,13 @@ public class TransactionController {
 			return new Response(400, ex.getMessage(), null);
 		}
 	}
+	
+	@GetMapping(value = "gettransactionbyaccountid/{accountId}")
+	public Response getTransactionByAccountId(@PathVariable("accountId") long id) {
+		try {
+			return new Response(200, "succeed", transactionService.getTransactionByAccountId(id));
+		}catch(Exception ex) {
+			return new Response(400, ex.getMessage(), null);
+		}
+	}
 }
