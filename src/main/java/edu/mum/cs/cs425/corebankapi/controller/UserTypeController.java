@@ -4,12 +4,7 @@ import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import edu.mum.cs.cs425.corebankapi.model.setting.UserType;
 import edu.mum.cs.cs425.corebankapi.model.status.Response;
@@ -17,6 +12,7 @@ import edu.mum.cs.cs425.corebankapi.service.IUserTypeService;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(allowedHeaders = "*")
 public class UserTypeController {
 	
 	@Autowired
