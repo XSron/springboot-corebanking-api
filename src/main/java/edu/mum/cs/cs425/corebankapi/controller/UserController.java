@@ -86,13 +86,14 @@ public class UserController {
 	@PostMapping(value = "login", produces = MediaType.APPLICATION_PROBLEM_JSON_VALUE)
 	public Response login(@RequestBody User user) {
 		try {
-			int count = userService.login(user.getUserName(), user.getPassword());
-			if(count == 0)
+			User u = userService.login(user.getUserName(), user.getPassword());
+			if(u == null)
 				return new Response(400, "Invalid User", null);
+			u.setPassword(null);
+			return new Response(200, "login successful", Arrays.asList(u));
 		}catch (Exception ex) {
 			return new Response(400, ex.getMessage(), null);
 		}
-		return new Response(200, "login successful", null);
 	}
 
 }
