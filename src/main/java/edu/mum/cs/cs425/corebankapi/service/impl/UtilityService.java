@@ -8,7 +8,7 @@ import edu.mum.cs.cs425.corebankapi.repository.UtilitySettingRepository;
 import edu.mum.cs.cs425.corebankapi.service.IUtilitySettingService;
 
 @Service
-public class UtilityServiceImpl implements IUtilitySettingService{
+public class UtilityService implements IUtilitySettingService{
 	
 	@Autowired
 	private UtilitySettingRepository utilitySettingRepository;

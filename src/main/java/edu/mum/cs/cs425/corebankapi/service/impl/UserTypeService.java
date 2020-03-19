@@ -9,7 +9,7 @@ import edu.mum.cs.cs425.corebankapi.repository.UserTypeRepository;
 import edu.mum.cs.cs425.corebankapi.service.IUserTypeService;
 
 @Service
-public class UserTypeServiceImpl implements IUserTypeService{
+public class UserTypeService implements IUserTypeService{
 	
 	@Autowired
 	private UserTypeRepository userTypeRepository;

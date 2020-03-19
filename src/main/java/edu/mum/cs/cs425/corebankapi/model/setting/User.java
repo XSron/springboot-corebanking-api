@@ -22,14 +22,10 @@ public class User {
 	@JoinColumn(name="userType_id")
 	private UserType userType;
 	@OneToOne
-	@JoinColumn(name="customer_id")
+	@JoinColumn(name="customer_id", unique = true)
 	private Customer customer;
 	
-	public User () {
-		
-	}
-	
-	
+	public User () {}
 	
 	public User(String userName, String password, Boolean Locked, UserType userType, Customer customer) {
 		super();
@@ -39,8 +35,6 @@ public class User {
 		this.userType = userType;
 		this.customer = customer;
 	}
-
-
 
 	public Long getUserId() {
 		return userId;
@@ -76,28 +70,17 @@ public class User {
 		this.userType = userType;
 	}
 	
-	
-
-
 	public Customer getCustomer() {
 		return customer;
 	}
 
-
-
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-
-
 
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", userName=" + userName + ", password=" + password + ", Locked=" + Locked
 				+ ", userType=" + userType + "]";
 	}
-	
-	
-	
-
 }
