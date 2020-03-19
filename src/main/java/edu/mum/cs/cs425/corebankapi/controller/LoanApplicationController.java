@@ -42,8 +42,8 @@ public class LoanApplicationController {
 		}
 	}
 	
-	@GetMapping(value = "getaccountbynumber/{loanNumber}")
-	public Response getAccountByNumber(@PathVariable("loanNumber") String loanNumber) {
+	@GetMapping(value = "getloanapplicationbynumber/{loanNumber}")
+	public Response getLoanApplicationByNumber(@PathVariable("loanNumber") String loanNumber) {
 		try {
 			LoanApplication account = loanService.getLoanApplicationByNumber(loanNumber);
 			return new Response(200, "succeed", Arrays.asList(account));
