@@ -5,7 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import edu.mum.cs.cs425.corebankapi.model.setting.User;
 
-@Repository 
+@Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+	
+	
 
 }

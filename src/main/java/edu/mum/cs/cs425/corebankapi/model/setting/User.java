@@ -18,20 +18,19 @@ public class User {
 	private Long userId;
 	private String userName;
 	private String password;
-	private Boolean Locked;
+	private Boolean Locked = false;
 	@ManyToOne
 	@JoinColumn(name="userType_id")
 	private UserType userType;
 	@OneToOne
 	@JoinColumn(name="customer_id")
 	private Customer customer;
-	@Column(name = "customer_id", insertable = false, updatable = false)
-	private long customerId;
+//	@Column(name = "customer_id", insertable = false, updatable = false)
+//	private long customerId;
 	
 	public User () {
 		
 	}
-	
 	
 	
 	public User(String userName, String password, Boolean Locked, UserType userType, Customer customer) {
@@ -80,18 +79,15 @@ public class User {
 	}
 	
 	
-
-
-	public long getCustomerId() {
-		return customerId;
-	}
-
-
-	public void setCustomerId(long customerId) {
-		this.customerId = customerId;
-		customer = new Customer();
-		customer.setCustomerId(customerId);
-	}
+//	public long getCustomerId() {
+//		return customerId;
+//	}
+//
+//
+//	public void setCustomerId(long customerId) {
+//		this.customerId = customerId;
+//		
+//	}
 
 
 
